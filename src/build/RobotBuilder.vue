@@ -1,5 +1,6 @@
 <script>
 import parts from '@/data/parts';
+import { toCurrency } from '@/shared/formatter';
 
 function getNextValidIndex(index, length) {
   const incrementedIndex = index + 1;
@@ -25,6 +26,7 @@ export default {
     };
   },
   methods: {
+    toCurrency,
     addToCart() {
       const robot = this.selectedRobot;
       const cost = robot.head.cost +
@@ -64,6 +66,7 @@ export default {
     selectPrevRightArm() {
       this.selectedRightArmIndex = getPrevValidIndex(this.selectedRightArmIndex, parts.arms.length);
     },
+
   },
   computed: {
     selectedRobot() {
@@ -134,7 +137,7 @@ export default {
       <tbody>
       <tr v-for="(robot,index) in cart" :key="index">
         <td>{{ robot.head.title }}</td>
-        <td>{{ robot.cost }}</td>
+        <td>{{ toCurrency(robot.cost) }}</td>
       </tr>
       </tbody>
     </table>
@@ -277,7 +280,7 @@ th, td {
   padding-right: 20px;
 }
 
-.cost{
+.cost {
   text-align: right;
 }
 </style>
