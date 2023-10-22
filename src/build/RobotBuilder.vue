@@ -1,6 +1,7 @@
 <script>
 import parts from '@/data/parts';
 import { toCurrency } from '@/shared/formatter';
+import CreatedHook from '@/build/created-hook-mixin';
 
 function getNextValidIndex(index, length) {
   const incrementedIndex = index + 1;
@@ -14,6 +15,9 @@ function getPrevValidIndex(index, length) {
 
 export default {
   name: 'RobotBuilder',
+  mixins: [
+    CreatedHook,
+  ],
   data() {
     return {
       availableParts: parts,
