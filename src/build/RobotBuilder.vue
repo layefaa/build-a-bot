@@ -28,6 +28,10 @@ const selectedRobot = computed(() => ({
   base: availableParts.bases[selectedBaseIndex.value],
 }));
 
+const classOnSale = computed(() => (
+  selectedRobot.value.head.onSale ? 'onSale' : ''
+));
+
 const addToCart = () => {
   const robot = selectedRobot.value;
   const cost = robot.head.cost +
@@ -75,7 +79,7 @@ const selectPrevRightArm = () => {
     <button class="add-to-cart" @click="addToCart">Add to Cart</button>
     <div class="top-row">
 
-      <div class="top part">
+      <div :class=[classOnSale,'top','part']>
         <div class="robot-name">
           {{ selectedRobot.head.title }}
           <span class="sale" v-if="selectedRobot.head.onSale">
@@ -269,5 +273,9 @@ th, td {
 
 .cost {
   text-align: right;
+}
+
+.onSale {
+  border: 3px solid red;
 }
 </style>
