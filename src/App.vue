@@ -15,15 +15,12 @@
 
 </template>
 
-<script>
+<script setup>
 import RobotBuilder from '@/build/RobotBuilder.vue';
+import { provide, ref } from 'vue';
 
-export default {
-  name: 'App',
-  components: {
-    RobotBuilder,
-  },
-};
+const userName = ref('Martin');
+provide('username', userName);
 </script>
 
 <style>
