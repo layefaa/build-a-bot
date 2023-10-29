@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref, onUpdated } from 'vue';
+import { computed, onUpdated, ref } from 'vue';
 
 const props = defineProps({
   parts: {
@@ -50,7 +50,12 @@ const selectPreviousPart = () => {
 
 <template>
   <div class="part" :class="position">
-    <img :src="selectedPart.imageUrl" alt="part"/>
+    <router-link :to="{
+      name:'PartInfo',
+      params:{partType:selectedPart.type ,id: selectedPart.id}
+    }">
+      <img :src="selectedPart.imageUrl" alt="part"/>
+    </router-link>
     <button @click="selectPreviousPart()" class="prev-selector"></button>
     <button @click="selectNextPart()" class="next-selector"></button>
     <span class="sale" v-show="selectedPart.onSale">Sale!</span>

@@ -3,7 +3,9 @@
     <div>
       <img src="../assets/robot-home.png" alt="robot" aria-hidden="true" class="robot">
     </div>
-    <div class="get-started"><a href="">Get Started</a> building your first robot</div>
+    <div class="get-started">
+      <router-link to="/build">Get Started</router-link>
+      building your first robot</div>
   </div>
 </template>
 
