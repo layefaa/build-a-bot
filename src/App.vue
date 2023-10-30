@@ -18,6 +18,13 @@
             Search
           </router-link>
         </li>
+        <li class="nav-item nav-cart">
+          <router-link :to="{name: 'Cart'}" class="nav-link">
+
+            Cart
+            <sup>{{cartStore.cart.length}}</sup>
+          </router-link>
+        </li>
       </ul>
     </nav>
   </header>
@@ -29,6 +36,9 @@
 
 <script setup>
 import { provide, ref } from 'vue';
+import useCartStore from '@/stores/cartStore';
+
+const cartStore = useCartStore();
 
 const userName = ref('Martin');
 provide('username', userName);
