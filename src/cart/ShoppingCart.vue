@@ -21,6 +21,12 @@
             {{ toCurrency(robot.cost) }}
           </td>
         </tr>
+        <tr class="total">
+          <td>Total</td>
+          <td>
+            {{toCurrency(cartStore.cartTotal)}}
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -42,7 +48,7 @@ th {
   padding: 5px;
 }
 
-.robot-title {
+.robot-title, .total {
   text-align: left;
   padding-right: 200px;
 }

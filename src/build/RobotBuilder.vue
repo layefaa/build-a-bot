@@ -1,12 +1,12 @@
 <script setup>
-import parts from '@/data/parts';
 import { computed, ref } from 'vue';
 import useCartStore from '@/stores/cartStore';
+import usePartsStore from '@/stores/partsStore';
 import PartSelector from '@/build/PartSelector.vue';
 import CollapsibleSection from '@/shared/CollapsibleSection.vue';
 
-const availableParts = parts;
 const cartStore = useCartStore();
+const partsStore = usePartsStore();
 
 const selectedRobot = ref({
   head: {},
@@ -15,6 +15,9 @@ const selectedRobot = ref({
   torso: {},
   base: {},
 });
+
+console.log(partsStore.parts);
+partsStore.getParts();
 
 const classOnSale = computed(() => (
   selectedRobot.value.head.onSale ? 'onSale' : ''
@@ -32,7 +35,7 @@ const addToCart = () => {
 </script>
 
 <template>
-  <div class="content">
+  <div class="content" v-if="partsStore.part">
     <div class="preview">
       <CollapsibleSection>
         <div class="preview-content">
@@ -52,7 +55,6 @@ const addToCart = () => {
 
       <button class="add-to-cart" @click="addToCart">Add to Cart</button>
     </div>
-
     <div class="top-row">
 
       <div :class="[classOnSale, 'top', 'part']">
@@ -62,40 +64,23 @@ const addToCart = () => {
             Sale!
           </span>
         </div>
-        <PartSelector :parts="availableParts.heads" position="top"
+        <PartSelector :parts="partsStore.part.heads" position="top"
                       @partSelected="part => selectedRobot.head = part"/>
       </div>
     </div>
     <div class="middle-row">
-      <PartSelector :parts="availableParts.arms" position="left"
+      <PartSelector :parts="partsStore.part.arms" position="left"
                     @partSelected="part => selectedRobot.left = part"/>
-      <PartSelector :parts="availableParts.torsos" position="center"
+      <PartSelector :parts="partsStore.part.torsos" position="center"
                     @partSelected="part => selectedRobot.torso = part"/>
-      <PartSelector :parts="availableParts.arms" position="right"
+      <PartSelector :parts="partsStore.part.arms" position="right"
                     @partSelected="part => selectedRobot.right = part"/>
     </div>
     <div class="bottom-row">
-      <PartSelector :parts="availableParts.bases" position="bottom"
+      <PartSelector :parts="partsStore.part.bases" position="bottom"
                     @partSelected="part => selectedRobot.base = part"/>
     </div>
   </div>
-<!--  <div>-->
-<!--    <h1>Cart</h1>-->
-<!--    <table>-->
-<!--      <thead>-->
-<!--      <tr>-->
-<!--        <th>Robot</th>-->
-<!--        <th>Cost</th>-->
-<!--      </tr>-->
-<!--      </thead>-->
-<!--      <tbody>-->
-<!--      <tr v-for="(robot,index) in cartStore.cart" :key="index">-->
-<!--        <td>{{ robot.head.title }}</td>-->
-<!--        <td>{{ toCurrency(robot.cost) }}</td>-->
-<!--      </tr>-->
-<!--      </tbody>-->
-<!--    </table>-->
-<!--  </div>-->
 </template>
 
 <style scoped>

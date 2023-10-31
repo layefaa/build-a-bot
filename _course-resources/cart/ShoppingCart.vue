@@ -21,6 +21,7 @@
             {{ toCurrency(robot.cost) }}
           </td>
         </tr>
+
       </tbody>
     </table>
   </div>
