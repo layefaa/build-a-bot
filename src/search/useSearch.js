@@ -1,8 +1,8 @@
 import { computed, onMounted } from 'vue';
 import usePartStore from '@/stores/partStore';
 
-const partsStore = usePartStore();
 export default function useSearch(searchTerm) {
+  const partsStore = usePartStore();
   const allParts = partsStore.part ?
     [
       ...partsStore.part.heads,

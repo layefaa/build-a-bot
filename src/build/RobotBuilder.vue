@@ -60,7 +60,7 @@ const addToCart = () => {
       <div :class="[classOnSale, 'top', 'part']">
         <div class="robot-name">
           {{ selectedRobot.head.title }}
-          <span class="sale" v-if="selectedRobot.head.onSale">
+          <span  class="sale" v-if="selectedRobot.head.onSale">
             Sale!
           </span>
         </div>
