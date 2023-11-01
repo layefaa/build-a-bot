@@ -4,7 +4,8 @@
   "description": "A server used by the Pluralsight Vue.js Fundamentals course",
   "main": "index.js",
   "scripts": {
-    "start": "node ."
+    "start": "node .",
+    "vercel-build": "echo hello"
   },
   "repository": {
     "type": "git",
