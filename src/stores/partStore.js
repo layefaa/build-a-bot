@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 
-const usePartsStore = defineStore('parts', () => {
+const usePartStore = defineStore('parts', () => {
   const part = ref(null);
   const getParts = async () => {
     const response = await fetch('/api/parts');
@@ -14,4 +14,4 @@ const usePartsStore = defineStore('parts', () => {
   };
 });
 
-export default usePartsStore;
+export default usePartStore;

@@ -1,12 +1,15 @@
 <script setup>
 import { computed, ref } from 'vue';
 import useCartStore from '@/stores/cartStore';
-import usePartsStore from '@/stores/partsStore';
+import usePartStore from '@/stores/partStore';
 import PartSelector from '@/build/PartSelector.vue';
 import CollapsibleSection from '@/shared/CollapsibleSection.vue';
 
 const cartStore = useCartStore();
-const partsStore = usePartsStore();
+const partsStore = usePartStore();
+
+// onCreated Hook
+partsStore.getParts();
 
 const selectedRobot = ref({
   head: {},
@@ -15,9 +18,6 @@ const selectedRobot = ref({
   torso: {},
   base: {},
 });
-
-console.log(partsStore.parts);
-partsStore.getParts();
 
 const classOnSale = computed(() => (
   selectedRobot.value.head.onSale ? 'onSale' : ''
