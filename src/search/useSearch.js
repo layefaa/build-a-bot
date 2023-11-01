@@ -1,8 +1,15 @@
 import { computed, onMounted } from 'vue';
-import parts from '@/data/parts';
+import usePartStore from '@/stores/partStore';
 
+const partsStore = usePartStore();
 export default function useSearch(searchTerm) {
-  const allParts = [...parts.heads, ...parts.arms, ...parts.torsos, ...parts.bases];
+  const allParts = partsStore.part ?
+    [
+      ...partsStore.part.heads,
+      ...partsStore.part.arms,
+      ...partsStore.part.torsos,
+      ...partsStore.part.bases,
+    ] : [];
 
   const results = computed(() => {
     let searchResults;
