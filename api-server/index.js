@@ -1,10 +1,11 @@
 const path = require('path')
 const express = require("express");
+const history = require("connect-history-api-fallback")
 
 const app = express();
 
 app.get('/api/parts', (req, res) =>
-  res.send({
+  res.send( {
     heads: [
       {
         id: 1,
@@ -173,7 +174,10 @@ app.post('/api/cart', (req, res) =>
 
 app.post('/api/sign-in', (req, res) => res.status(200).send());
 
+app.use(history());
 app.use('/api/images', express.static('images'));
+
+app.use('/', express.static('dist', {index : 'index.html'}));
 
 app.listen(8081, () => console.log('Server listening on port 8081!'));
 
